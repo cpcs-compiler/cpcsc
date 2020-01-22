@@ -1,0 +1,8 @@
+*.o
+
+# ignore lex and yacc generated file
+src/parser.c
+src/parser.h
+src/lexer.c
+
+cpcsc
