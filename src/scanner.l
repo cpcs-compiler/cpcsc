@@ -17,7 +17,7 @@
 "cls/"			return (CLS);
 "txt/"			return (TXT);
 
-[a-zA-Z0-9!?;.% ]+	return (STRING);
+[a-zA-Z0-9!?;.% ]+	{ yylval.str = strdup(yytext); return (STRING); };
 
 .			return (*yytext);
 

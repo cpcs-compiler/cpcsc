@@ -16,13 +16,31 @@ int	yyerror(char const *s);
 %token STRING
 %token ENDLINE
 
+%type <str> STRING
+
+%union
+{
+	char	*str;
+}
+
 %start entry
 
 %%
 entry:	/* empty */;
-     	| ENDLINE
-     	| TXT ENDLINE
-     	| TXT STRING ENDLINE	{ printf("ok\n"); };
+     	| stmts
+	;
+
+stmts: /* empty */;
+     	| stmt ENDLINE stmts;
+	;
+
+stmt:	txt;
+    	| CLS
+    	| ENDLINE
+	;
+
+txt:	TXT STRING	{ printf("%s\n", $2); };
+   	| TXT		{ putchar('\n'); };
 	;
 
 %%

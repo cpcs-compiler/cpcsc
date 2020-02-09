@@ -775,7 +775,7 @@ return (TXT);
 case 6:
 YY_RULE_SETUP
 #line 20 "src/scanner.l"
-return (STRING);
+{ yylval.str = strdup(yytext); return (STRING); };
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
