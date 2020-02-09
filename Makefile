@@ -8,8 +8,10 @@ CFLAGS	+= -Wall -Werror -Wextra -std=c11 `llvm-config --cflags`
 LDFLAGS	+= `llvm-config --cxxflags --ldflags --libs core executionengine interpreter analysis native bitwriter --system-libs` -lfl
 
 SRCS	= main.c \
+	  utils.c \
 	  parser.c \
-	  scanner.c
+	  scanner.c \
+	  codegen.c
 OBJS	= $(addprefix src/, $(SRCS:.c=.o))
 
 COV_MESS = $(addprefix src/, $(SRCS:.c=.gcda)) \
