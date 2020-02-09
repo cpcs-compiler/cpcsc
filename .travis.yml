@@ -1,0 +1,16 @@
+language: cpp
+dist: bionic
+sudo: false
+compiler:
+  - clang
+  - gcc
+
+addons:
+  apt:
+    sources:
+      - llvm-toolchain-bionic
+    packages:
+      - llvm-dev
+
+script:
+  - make debug
