@@ -10,8 +10,8 @@ int	yyerror(char const *s);
 %define parse.lac full
 %define parse.error verbose
 
-%token CLS
-%token TXT
+%token CLS "cls/"
+%token TXT "txt/"
 
 %token STRING
 %token ENDLINE
@@ -32,6 +32,7 @@ entry:	/* empty */;
 
 stmts: /* empty */;
      	| stmt ENDLINE stmts;
+	| stmt
 	;
 
 stmt:	txt;

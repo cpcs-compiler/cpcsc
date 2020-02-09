@@ -10,14 +10,16 @@
 %option caseless
 %option nounput
 
+string	[a-zA-Z0-9!?;.%][a-zA-Z0-9!?;.% ]?+
+
 %%
 \n			{ yylineno++; return (ENDLINE); }
 [ \t]+			/* ignore */;
-("rem/"|"//"|"'").*	/* comment */;
+("rem/"|"//"|"'").*	{ printf("Comment: \033[92m%s\033[0m\n", yytext); };
 "cls/"			return (CLS);
 "txt/"			return (TXT);
 
-[a-zA-Z0-9!?;.% ]+	{ yylval.str = strdup(yytext); return (STRING); };
+{string}		{ yylval.str = strdup(yytext); return (STRING); };
 
 .			return (*yytext);
 

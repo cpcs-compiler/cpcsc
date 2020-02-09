@@ -3,6 +3,10 @@
 # ignore lex and yacc generated file
 src/parser.c
 src/parser.h
-src/lexer.c
+src/scanner.c
 
 cpcsc
+
+# vim mess
+*.swp
+
