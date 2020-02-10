@@ -9,6 +9,8 @@ LDFLAGS	+= `llvm-config --cxxflags --ldflags --libs core executionengine interpr
 
 SRCS	= main.c \
 	  utils.c \
+	  color.c \
+	  error.c \
 	  parser.c \
 	  scanner.c \
 	  codegen.c

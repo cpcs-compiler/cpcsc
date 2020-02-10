@@ -1,5 +1,6 @@
 %{
 #include <stdio.h>
+#include "error.h"
 
 extern int	yylex();
 extern int	yylineno;
@@ -48,7 +49,7 @@ txt:	TXT STRING	{ printf("%s\n", $2); };
 
 int	yyerror(char const *s)
 {
-	fprintf(stderr, "[Error] l%d: %s\n", yylineno, s);
+	error("l%d: %s", yylineno, s);
 
 	return (0);
 }
