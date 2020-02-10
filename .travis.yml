@@ -1,16 +1,20 @@
 language: cpp
+os: linux
 dist: bionic
-sudo: false
-compiler:
-  - clang
-  - gcc
-
-addons:
+<addons:
   apt:
     sources:
-      - llvm-toolchain-bionic
+      - sourceline: "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main"
+        key_url: "https://apt.llvm.org/llvm-snapshot.gpg.key"
     packages:
-      - llvm-dev
+      - clang-10
+      - llvm-10-dev
+      - libfl-dev
+
+before_install:
+  - CC=clang-10 && CXX=clang++-10
+  - sudo update-alternatives --install /usr/bin/llvm-config llvm-config $(llvm-config-10 --bindir)/llvm-config 1
+  - export PATH=/usr/bin:$PATH
 
 script:
   - make debug
