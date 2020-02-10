@@ -10,3 +10,10 @@ cpcsc
 # vim mess
 *.swp
 
+# vscode mess
+.vs
+
+# coverage
+coverage.info
+*.gcda
+*.gcno
