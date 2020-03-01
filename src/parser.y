@@ -40,7 +40,8 @@ int	error_count;
 
 %%
 entry:
-	stmts		{ dump_nodes($1); }
+	stmts			{ dump_nodes($1); }
+	| optional_linebreak	{ NULL; }
 ;
 
 linebreak:
