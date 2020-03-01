@@ -13,6 +13,8 @@ SRCS	= main.c \
 	  error.c \
 	  parser.c \
 	  scanner.c \
+	  node.c \
+	  node_dump.c \
 	  codegen.c
 OBJS	= $(addprefix src/, $(SRCS:.c=.o))
 

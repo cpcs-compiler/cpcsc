@@ -11,7 +11,13 @@
 %option caseless
 %option nounput
 
-string	[a-zA-Z0-9!?;.%][a-zA-Z0-9!?;.% ]?+
+alpha		[a-zA-Z]
+digit		[0-9]
+alphanum	{alpha}|{digit}
+
+id		{alpha}+{alphanum}*
+string		[a-zA-Z0-9!?;.%][a-zA-Z0-9!?;.% ]?+
+end		"end/"|"fin"
 
 %%
 \n			{ yylineno++; return (ENDLINE); }
@@ -19,6 +25,37 @@ string	[a-zA-Z0-9!?;.%][a-zA-Z0-9!?;.% ]?+
 ("rem/"|"//"|"'").*	{ printf("Comment: \033[92m%s\033[0m\n", yytext); };
 "cls/"			return (CLS);
 "txt/"			return (TXT);
+
+"if/"			return (IF);
+"si/"			return (IF);
+
+"alors"			return (THEN);
+"then"			return (THEN);
+
+"sinon"			return (ELSE);
+"else"			return (ELSE);
+
+":"			return (COLON);
+"=="			;
+"="			;
+
+"!="			;
+"N="			;
+
+">"			;
+
+"!>"			;
+"N>"			;
+
+"<"			;
+"!<"			;
+"N<"			;
+
+"~="			;
+"!~="			;
+"N~="			;
+
+"@#"{id}		;
 
 {string}		{ yylval.str = strdup(yytext); return (STRING); };
 
