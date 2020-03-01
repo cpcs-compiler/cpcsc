@@ -8,6 +8,7 @@
 #include "error.h"
 
 extern FILE	*yyin;
+extern int	error_count;
 
 int	yyparse();
 
@@ -40,6 +41,7 @@ int	process_file(char const *name)
 int	main(int argc, char **argv)
 {
 	(void)argc;
+	error_count = 0;
 	process_file(argv[1]);
-	return (EXIT_SUCCESS);
+	return (error_count);
 }

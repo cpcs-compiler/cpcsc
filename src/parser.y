@@ -7,6 +7,7 @@ extern int	yylex();
 extern int	yylineno;
 
 int	yyerror(char const *s);
+int	error_count;
 %}
 
 %define parse.lac full
@@ -84,6 +85,7 @@ stmt_if:
 
 int	yyerror(char const *s)
 {
+	error_count++;
 	error("l%d: %s", yylineno, s);
 
 	return (0);
