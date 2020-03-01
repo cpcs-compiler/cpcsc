@@ -22,7 +22,7 @@ end		"end/"|"fin"
 %%
 \n			{ yylineno++; return (ENDLINE); }
 [ \t\r]+			/* ignore */;
-("rem/"|"//"|"'").*	{ printf("Comment: \033[92m%s\033[0m\n", yytext); };
+("rem/"|"//"|"'").*		/* ignore */;
 "cls/"			return (CLS);
 "txt/"			return (TXT);
 
