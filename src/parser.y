@@ -72,8 +72,15 @@ stmt:	stmt_txt		{ $$ = $1; }
 ;
 
 stmt_txt:
-       	TXT STRING	{ printf("%s\n", $2); $$ = NULL; };
-   	| TXT		{ putchar('\n'); $$ = NULL; };
+       	TXT STRING
+	{
+		node_t *tmp = new_node_str($2);
+		$$ = new_node_txt(tmp);
+	}
+   	| TXT
+	{
+		$$ = new_node_txt(NULL);
+	}
 ;
 
 /*

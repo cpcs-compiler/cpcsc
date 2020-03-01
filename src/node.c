@@ -20,6 +20,7 @@ node_t	*new_node_str(char *str)
 
 	node = (node_str_t *)malloc(sizeof(node_str_t));
 	if (!node) return (NULL);
+	node->type = NODE_STR;
 	node->value = str;
 
 	return ((node_t *)node);
@@ -49,6 +50,19 @@ node_t	*new_node_stmts(node_t **stmts, size_t len, node_t *stmt)
 
 	node->stmts = stmts;
 	node->len = len;
+
+	return ((node_t *)node);
+}
+
+node_t	*new_node_txt(node_t *value)
+{
+	node_txt_t	*node;
+
+	node = (node_txt_t *)malloc(sizeof(node_txt_t));
+	if (!node) return (NULL);
+
+	node->type = NODE_TXT;
+	node->value = value;
 
 	return ((node_t *)node);
 }
