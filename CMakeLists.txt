@@ -27,6 +27,11 @@ include_directories (
 )
 llvm_map_components_to_libnames (llvm_libs core executionengine interpreter analysis native bitwriter)
 
+set (WIN32_SRCS)
+if (WIN32)
+    include (win32/CMakeLists.txt)
+endif (WIN32)
+
 add_subdirectory(src)
 
 if (WITH_COVERAGE)

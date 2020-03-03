@@ -2,6 +2,8 @@
 # define CPCSC_COLOR_H
 
 # ifdef _WIN32
+#  include <windows.h>
+
 #  define BLACK		0
 #  define RED		4
 #  define GREEN		2

@@ -6,6 +6,7 @@ set (SRCS
     node_dump.c
     node.c
     utils.c
+    ${WIN32_SRCS}
 )
 
 if (WIN32)

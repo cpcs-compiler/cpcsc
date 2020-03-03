@@ -9,7 +9,7 @@ void set_color(int fd, int color)
 	HANDLE	handle;
 
 	handle = GetStdHandle(fd);
-	SetConsoleTextAttribute(handle, color*16);
+	SetConsoleTextAttribute(handle, color);
 #else
 	dprintf(fd, "\033[%dm", color);
 #endif /* !_WIN32 */

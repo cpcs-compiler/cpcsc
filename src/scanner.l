@@ -1,6 +1,9 @@
 %{
 /* remove "error: ‘input’ defined but not used" */
 #define YY_NO_INPUT
+#ifdef WIN32
+# define YY_NO_UNISTD_H
+#endif /* !WIN32 */
 
 #include <stdio.h>
 #include <string.h>
