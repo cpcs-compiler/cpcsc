@@ -1,0 +1,16 @@
+version: '0.0.{build}'
+
+image: Visual Studio 2017
+
+cache:
+  - c:\Tools\vcpkg\installed
+
+install:
+  - cinst winflexbison3
+  - vcpkg install llvm
+
+build_script:
+  - mkdir build
+  - cd build
+  - cmake -DWITH_COVERAGE=ON ..
+  - cmake --build . --config Debug

@@ -4,6 +4,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg?style=flat-square)](CODE_OF_CONDUCT.md) 
 [![GitHub issues](https://img.shields.io/github/issues/cpcs-compiler/cpcsc?style=flat-square)](https://github.com/cpcs-compiler/cpcsc/issues) 
 [![Travis (.org)](https://img.shields.io/travis/cpcs-compiler/cpcsc?logo=travis-ci&logoColor=%23FFFFFF&style=flat-square)](https://travis-ci.org/cpcs-compiler/cpcsc) 
+[![AppVeyor](https://img.shields.io/appveyor/build/cpcs-compiler/cpcsc?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/cpcs-compiler/cpcsc)
 [![Codecov](https://img.shields.io/codecov/c/github/cpcs-compiler/cpcsc?logo=codecov&style=flat-square)](https://codecov.io/gh/cpcs-compiler/cpcsc)
 
 CpcSC support a subset of the [CpcdosC+ language](https://doc.cpcdos.net)
