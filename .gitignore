@@ -17,3 +17,6 @@ cpcsc
 coverage.info
 *.gcda
 *.gcno
+
+#Cmake 
+build/
