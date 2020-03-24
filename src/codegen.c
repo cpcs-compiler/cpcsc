@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <llvm-c/Types.h>
 #include <llvm-c/Target.h>
 #include <llvm-c/TargetMachine.h>
@@ -16,9 +17,6 @@ static LLVMPassManagerRef	pass_manager = NULL;
 
 void	codegen_init()
 {
-	char			*error;
-	LLVMExecutionEngineRef	engine;
-
 	LLVMInitializeAllTargetInfos();
 	LLVMInitializeAllTargets();
 	LLVMInitializeAllTargetMCs();
@@ -27,11 +25,6 @@ void	codegen_init()
 
 	module = LLVMModuleCreateWithName("cpcsc");
 	builder = LLVMCreateBuilder();
-	if (LLVMCreateExecutionEngineForModule(&engine, module, &error) != 0)
-	{
-		printf("Error: %s\n", error);
-		return;
-	}
 
 	pass_manager = LLVMCreateFunctionPassManagerForModule(module);
 	LLVMAddPromoteMemoryToRegisterPass(pass_manager);
@@ -41,6 +34,20 @@ void	codegen_init()
 	LLVMInitializeFunctionPassManager(pass_manager);
 }
 
+void	codegen_emit_entry(void)
+{
+	LLVMTypeRef main_type;
+	LLVMValueRef main;
+	LLVMBasicBlockRef entry;
+	
+	main_type = LLVMFunctionType(LLVMVoidType(), NULL, 0, false);
+	main = LLVMAddFunction(module, "main", main_type);
+	
+	entry = LLVMAppendBasicBlock(main, "entry");
+	LLVMPositionBuilderAtEnd(builder, entry);
+	LLVMBuildRetVoid(builder);
+}
+
 void	codegen_emit(const char *obj_file)
 {
 	const char		*triple;
@@ -48,6 +55,7 @@ void	codegen_emit(const char *obj_file)
 	LLVMTargetMachineRef	target_machine;
 	char			*error;
 
+	codegen_emit_entry();
 	triple = LLVMGetDefaultTargetTriple();
 	printf("Target triple: \033[35m%s\033[0m\n", triple);
 	if (LLVMGetTargetFromTriple(triple, &target, &error) != 0)
@@ -57,7 +65,7 @@ void	codegen_emit(const char *obj_file)
 	}
 	printf("Target: \033[36m%s\033[0m\n", LLVMGetTargetName(target));
 	target_machine = LLVMCreateTargetMachine(target, triple, "", "",
-			LLVMCodeGenLevelNone, LLVMRelocDefault, LLVMCodeModelDefault);
+			LLVMCodeGenLevelDefault, LLVMRelocDefault, LLVMCodeModelDefault);
 	if (LLVMTargetMachineEmitToFile(target_machine, module, (char *)obj_file, LLVMObjectFile, &error) != 0)
 	{
 		printf("Error: %s\n", error);
@@ -68,7 +76,6 @@ void	codegen_emit(const char *obj_file)
 int	codegen(const char *obj_file)
 {
 	codegen_init();
-
 	codegen_emit(obj_file);
 
 	LLVMDisposePassManager(pass_manager);
