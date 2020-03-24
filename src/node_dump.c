@@ -45,6 +45,10 @@ static void	dump_node_print(node_t *node, int level)
 	{
 		dump_node_level_print(level, "NODE_STR: %s\n", ((node_str_t *)node)->value);
 	}
+	else if (node->type == NODE_CLS)
+	{
+		dump_node_level_print(level, "NODE_CLS\n");
+	}
 	else
 	{
 		dump_node_level_print(level, "UNKNOW NODE\n");

@@ -66,3 +66,15 @@ node_t	*new_node_txt(node_t *value)
 
 	return ((node_t *)node);
 }
+
+node_t	*new_node_cls(void)
+{
+	node_cls_t	*node;
+
+	node = (node_cls_t *)malloc(sizeof(node_cls_t));
+	if (!node) return (NULL);
+
+	node->type = NODE_CLS;
+
+	return ((node_t *)node);
+}

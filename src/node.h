@@ -40,13 +40,20 @@ typedef struct
 
 } node_txt_t;
 
+typedef struct
+{
+	node_type_t	type;
+} node_cls_t;
+
 node_t	*new_node(node_type_t, node_t *, node_t *);
 
 node_t	*new_node_str(char *);
 
 node_t	*new_node_stmts(node_t **, size_t, node_t *);
 
-node_t	*new_node_txt(node_t *value);
+node_t	*new_node_txt(node_t *);
+
+node_t	*new_node_cls(void);
 
 /* debug utils */
 void	dump_nodes(node_t *);
