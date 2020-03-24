@@ -1,4 +1,5 @@
 *.o
+*.exe
 
 # ignore lex and yacc generated file
 src/parser.c
