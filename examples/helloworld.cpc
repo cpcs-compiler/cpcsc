@@ -1,3 +1,6 @@
+REM/ Clear screen
 REM/ Display "Hello World" and exit
+
+CLS/
 
 TXT/ Hello World
