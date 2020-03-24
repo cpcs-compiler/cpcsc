@@ -40,7 +40,7 @@ int	error_count;
 
 %%
 entry:
-	stmts			{ dump_nodes($1); }
+	stmts optional_linebreak			{ dump_nodes($1); }
 	| optional_linebreak	{ NULL; }
 ;
 
@@ -59,14 +59,14 @@ stmts:
 		node_stmts_t *tmp = (node_stmts_t *)$1;
 		$$ = new_node_stmts(tmp->stmts, tmp->len, $3);
 	}
-	| optional_linebreak stmt linebreak
+	| optional_linebreak stmt
 	{
 		$$ = new_node_stmts(NULL, 0, $2);
 	}
 ;
 
 stmt:	stmt_txt		{ $$ = $1; }
-//    	| CLS
+    	| CLS			{ $$ = new_node_cls(); }
 //	| stmt_if
 //	| ENDLINE
 ;
